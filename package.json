@@ -1,0 +1,16 @@
+{
+  "name": "design-system",
+  "packageManager": "yarn@3.0.2",
+  "workspaces": [
+    "packages/*"
+  ],
+  "resolutions": {
+    "typescript": "4.3.5"
+  },
+  "scripts": {
+    "build:all": "yarn workspace foreach -t -p run build"
+  },
+  "devDependencies": {
+    "typescript": "^4.4.3"
+  }
+}

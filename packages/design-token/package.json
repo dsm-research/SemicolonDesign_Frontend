@@ -1,0 +1,6 @@
+{
+    "name": "@semicolon/design-token",
+    "devDependencies": {
+        "typescript": "^4.4.2"
+    }
+}

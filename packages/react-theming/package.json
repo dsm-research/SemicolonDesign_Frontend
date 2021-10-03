@@ -1,0 +1,7 @@
+{
+    "name": "@semicolon/react-theming",
+    "main": "./src/index.ts",
+    "devDependencies": {
+        "typescript": "^4.4.2"
+    }
+}
