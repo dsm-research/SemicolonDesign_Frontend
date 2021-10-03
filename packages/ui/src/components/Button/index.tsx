@@ -52,7 +52,7 @@ export const ButtonElement = styled.button<ButtonElementProps>`
     align-items: center;
     border: none;
     cursor: ${(props) => props.cursor};
-    background: ${(props) => props.theme.colors[props.color]};
+    background: ${(props) => props.theme.colors[props.backgroundColor]};
     padding: ${(props) => `${props.paddingVertical}px ${props.paddingHorizontal}px`};
     border-radius: ${(props) => props.borderRadius}px;
     border: 1px solid ${(props) => props.theme.colors[props.borderColor]};
