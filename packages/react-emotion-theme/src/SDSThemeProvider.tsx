@@ -1,4 +1,4 @@
-import React, { FC } from "react"
+import * as React from "react"
 import { ThemeProvider } from '@emotion/react';
 import { colors } from '@semicolon/design-token'
 import { getThemeName } from '@semicolon/react-theming';
@@ -9,7 +9,7 @@ interface Props {
     mode?: 'auto' | 'dark-only' | 'light-only'
 }
 
-export const SDSThemeProvider: FC<Props> = ({children, mode = 'auto'}) => {
+export const SDSThemeProvider: React.FC<Props> = ({children, mode = 'auto'}) => {
     const theme = React.useMemo(() => {
         const colorTheme = colors[getThemeName(mode)];
         return {

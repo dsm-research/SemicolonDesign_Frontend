@@ -1,5 +1,5 @@
 {
-    "name": "@semicolon/react-test",
+    "name": "@semicolon/react-emotion-theme",
     "main": "./src/index.ts",
     "devDependencies": {
         "@emotion/react": "^11.4.0",

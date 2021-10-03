@@ -1,23 +1,45 @@
 
+// // {
+// //     "compilerOptions": {
+// //       "target": "es5",
+// //       "module": "esnext",
+// //       "lib": ["dom", "dom.iterable", "esnext"],
+// //       "jsx": "react",
+// //       "declaration": true,
+// //       "moduleResolution": "node",
+// //       "resolveJsonModule": true,
+// //       "declarationDir": "./dist",
+// //       "sourceMap": true,
+// //       "outDir": "./dist",
+// //       "strict": true,
+// //       "noImplicitThis": false /* Raise error on 'this' expressions with an implied 'any' type. */,
+// //       "baseUrl": "src",
+// //       "esModuleInterop": true,
+// //       "forceConsistentCasingInFileNames": true
+// //     },
+// //     "include": ["src"],
+// //     "exclude": ["node_modules", "dist", "**/*.stories.tsx", "cypress"]
+// //   }
+// {
+//   "extends": "../../tsconfig.json",
+//   "compilerOptions": {
+//     "rootDir": "src",
+//     "sourceMap": true,
+//     "declaration": true,
+//     "declarationDir": "./build",
+//     "outDir": "dist",
+//     "jsx": "preserve",
+//   },
+//   "include": [
+//     "src"
+//   ],
+//   "exclude": ["node_modules", "**/*.stories.tsx", "cypress"]
+// }
+
 {
-    "compilerOptions": {
-      "target": "es5",
-      "module": "esnext",
-      "lib": ["dom", "dom.iterable", "esnext"],
-      "jsx": "react",
-      "declaration": true,
-      "moduleResolution": "node",
-      "resolveJsonModule": true,
-      "declarationDir": "./dist",
-      "sourceMap": true,
-      "outDir": "./dist",
-      "strict": true,
-      "noImplicitThis": false /* Raise error on 'this' expressions with an implied 'any' type. */,
-      "baseUrl": "src",
-      "esModuleInterop": true,
-      "forceConsistentCasingInFileNames": true
-    },
-    "include": ["src"],
-    "exclude": ["node_modules", "dist", "**/*.stories.tsx", "cypress"]
-  }
-  
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "jsx": "react",
+  },
+  "include": ["**/*.ts", "**/*.tsx", "../../shared-configs"]
+}

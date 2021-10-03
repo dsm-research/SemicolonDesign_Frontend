@@ -1,4 +1,4 @@
-import React,{ FC } from "react";
+import React, { FC } from "react";
 import { BaseTypography, TypoProps } from "./BaseTypography";
 
 export const Botton: FC<TypoProps> = (props) => { 

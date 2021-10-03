@@ -1,5 +1,6 @@
 {
     "name": "@semicolon/design-token",
+    "main": "./src/index.ts",
     "devDependencies": {
         "typescript": "^4.4.2"
     }

@@ -1,58 +1,50 @@
 import commonjs from '@rollup/plugin-commonjs';
-import typescript from 'rollup-plugin-typescript2';
-import resolve from '@rollup/plugin-node-resolve';
-import svgr from '@svgr/rollup';
-import image from '@rollup/plugin-image';
-import url from '@rollup/plugin-url';
+import json from '@rollup/plugin-json';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
-import sourcemaps from 'rollup-plugin-sourcemaps';
-import babel from 'rollup-plugin-babel';
+import typescript from 'rollup-plugin-typescript2';
+import packageJSON from './package.json';
 
-// eslint-disable-next-line import/extensions
-import pkg from './package.json';
+const requiredPublishConfigFields = ['main', 'module'];
 
-const input = 'src/index.ts';
-const globals = { react: 'React', 'react-dom': 'ReactDOM', '@emotion/styled': 'styled' };
-const extensions = ['.js', '.jsx', '.ts', '.tsx'];
-const external = ['react', 'react-dom', '@emotion/styled'];
+export function makeRollupConfig(packageJSON, options = {}) {
+  const publishConfig = packageJSON.publishConfig;
+  const missingField = requiredPublishConfigFields.find(
+    (field) => publishConfig[field] === undefined
+  );
+  if (missingField !== undefined) {
+    throw new Error(`'${missingField}' is missing in package.json`);
+  }
 
-export default [
-	{
-		input,
-		output: [
-			{
-				sourcemap: true,
-				file: `dist/${pkg.name}.cjs.js`,
-				format: 'cjs'
-			},
-			{
-				sourcemap: true,
-				file: `dist/${pkg.name}.es.js`,
-				format: 'esm'
-			},
-			{
-				sourcemap: true,
-				file: pkg.main,
-				format: 'umd',
-				name: 'ReactFreeCustomDropDown',
-				globals
-			}
-		],
-		external,
-		plugins: [
-			resolve({ extensions }),
-			babel({
-				exclude: 'node_modules/**',
-				presets: ['@babel/env', '@babel/preset-react'],
-				plugins: [['babel-plugin-styled-components', { ssr: true, displayName: true, preprocess: false }]]
-			}),
-			commonjs({ include: 'node_modules/**' }),
-			typescript({ tsconfig: './tsconfig.json', clean: true }),
-			svgr(),
-			image(),
-			url(),
-			peerDepsExternal(),
-			sourcemaps()
-		]
-	}
-];
+  const modulePathTokens = publishConfig.module.split('/');
+  return {
+    input: 'src/index.ts',
+    output: [
+      {
+        file: publishConfig.main,
+        format: 'cjs',
+        sourcemap: true,
+      },
+      {
+        dir: modulePathTokens.slice(0, -1).join('/'),
+        format: 'es',
+        sourcemap: true,
+        preserveModules: true,
+        preserveModulesRoot: 'src',
+      },
+    ],
+    watch: {
+      include: 'src/**',
+    },
+    plugins: [
+      peerDepsExternal(),
+      json(),
+      typescript({ tsconfig: './tsconfig.json' }),
+      commonjs(),
+      nodeResolve(),
+    ],
+    ...options,
+  };
+}
+
+export default makeRollupConfig(packageJSON);
