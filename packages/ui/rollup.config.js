@@ -39,7 +39,7 @@ export function makeRollupConfig(packageJSON, options = {}) {
     plugins: [
       peerDepsExternal(),
       json(),
-      typescript({ tsconfig: './tsconfig.json' }),
+      typescript({ tsconfig: './tsconfig.lib.json' }),
       commonjs(),
       nodeResolve(),
     ],
